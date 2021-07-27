@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/StringCollectionFormatter/bin/Debug/net5.0
+/StringCollectionFormatter/obj
+/StringProcessor/bin/Debug/net5.0
+/StringProcessor/obj
+/StringProcessorTest/bin/Debug/net5.0
+/StringProcessorTest/obj
