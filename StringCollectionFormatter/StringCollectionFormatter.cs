@@ -6,10 +6,9 @@ namespace StringsFormatter
 {
     public class StringCollectionFormatter
     {
-
         private readonly string _removeChars="_4";
         private readonly char _fromCurrencySymbol='$';
-        private readonly  char _toCurrencySymbol='£';
+        private readonly char _toCurrencySymbol='£';
 
                 /// <summary>
         /// Checks string collection for  nulls
