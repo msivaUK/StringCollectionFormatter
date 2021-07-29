@@ -7,23 +7,27 @@ namespace StringsFormatter
     public class StringCollectionFormatter
     {
 
-        private string _removeChars;
-        private char _fromCurrencySymbol;
-        private char _toCurrencySymbol;
+        private readonly string _removeChars="_4";
+        private readonly char _fromCurrencySymbol='$';
+        private readonly  char _toCurrencySymbol='£';
+
+                /// <summary>
+        /// Checks string collection for  nulls
+        /// </summary>
+        /// <param name="stringCollection"></param>
+        /// <returns></returns>
+        private bool  IsInvalidCollection(ICollection<string> stringCollection)
+        {
+            if (stringCollection is null) return true;
+            if (stringCollection.Contains(null)) return true;
+            return false;
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="removeChars">characters to remove, defaults to "_4"</param>
-        /// <param name="fromCurrencySymbol">currency symbol to be replaced defaults to '$'</param>
-        /// <param name="toCurrencySymbol">currency symbol after replacement defaults to '£'</param>
-        public StringCollectionFormatter(string removeChars = "_4", char fromCurrencySymbol = '$', char toCurrencySymbol = '£')
-        {
-            _removeChars = removeChars;
-            _fromCurrencySymbol = fromCurrencySymbol;
-            _toCurrencySymbol = toCurrencySymbol;
-        }
-
+        /// <param name="original"></param>
+        /// <returns></returns>
         private string FormatString(string original)
         {
             var stringBuilder = new StringBuilder();
@@ -43,7 +47,7 @@ namespace StringsFormatter
                 }
             }
 
-            if (stringBuilder.Length == 0) throw new InvalidOperationException("Empty String returned");
+            if (stringBuilder.Length == 0) throw new InvalidOperationException("Empty string returned");
             return stringBuilder.ToString();
         }
 
@@ -55,6 +59,7 @@ namespace StringsFormatter
         /// <returns></returns>
         public List<string> FormatItems(ICollection<string> stringCollection)
         {
+            if (IsInvalidCollection(stringCollection)) throw new ArgumentException("String Collection cannot be null, contain nulls or empty strings");
             var formattedStrings = new List<string>();
             foreach (var item in stringCollection)
             {
